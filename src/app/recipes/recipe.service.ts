@@ -1,8 +1,10 @@
 import { EventEmitter} from '@angular/core';
+import {Subject} from 'rxjs/Subject';
+
 import {Recipe} from './recipe.model' ;
 import {Ingredient} from '../shared/ingredient.model';
 export class RecipeService{
-  recipeSelected = new EventEmitter<Recipe>();
+recipeChanged = new Subject<Recipe[]>();
   private recipes: Recipe[] = [
       new Recipe('Big Fat Burger', 'A Burger With delicious Patty',
       'https://static.pexels.com/photos/161675/abstract-barbeque-bbq-beauty-161675.jpeg',[
@@ -20,6 +22,15 @@ export class RecipeService{
     }
     getRecipe(index:number){
        return this.recipes.slice()[index];
+    }
+
+    addRecipe(recipe:Recipe){
+      this.recipes.push(recipe);
+      this.recipeChanged.next(this.recipes.slice());
+    }
+    updateRecipe(index:number,newRecipe:Recipe){
+      this.recipes[index] = newRecipe;
+        this.recipeChanged.next(this.recipes.slice()); 
     }
 
 }
