@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+import { RecipeService } from './recipes/recipe.service';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './header/header.component';
@@ -34,7 +35,7 @@ import {  ReactiveFormsModule } from '@angular/forms';
   imports: [
     BrowserModule,AppRoutingModule,FormsModule,ReactiveFormsModule
   ],
-  providers: [ShoppingService],
+  providers: [ShoppingService,RecipeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
